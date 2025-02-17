@@ -1,0 +1,45 @@
+<?php
+ $yzm =  array (
+  'sy_title' => '觅知blibli专业版可对接JSON解析弹幕播放器',
+  'logo' => '',
+  'logo_width_height' => '210,250',
+  'right_wenzi' => '觅知弹幕专业版播放器',
+  'right_link' => 'https://www.98dou.cn/4312.html',
+  'loading_on' => 'on',
+  'title' => '正在播放中_觅知解析弹幕播放器 (゜-゜)つロ 干杯~',
+  'loading_bg' => '/mizhiplayerapi/img/bg.jpg',
+  'loading_pic' => '/mizhiplayerapi/img/005.gif',
+  'loading_width_height' => '150,150',
+  'loading_color' => '#000',
+  'fufeng' => '',
+  'key' => '',
+  'khd' => 'dm',
+  'api1' => '',
+  'api2' => '',
+  'api3' => '',
+  'api4' => '',
+  'api5' => '',
+  'url_wenzi' => '仅供内部交流研究，请勿用于任何商业用途！— 觅知专用弹幕播放器',
+  'error_wenzi' => '解析失败，请稍后再试~',
+  'theme' => '5',
+  'color' => '#b726eb',
+  'bgsp' => 'https://videobd-platform.cdn.huya.com/1048585/1259553301717/40497871/b33c01064a59e267de2a1b237c2d4881.mp4',
+  'footer' => '',
+  'ads' => 
+  array (
+    'pause' => 
+    array (
+      'state' => 'on',
+      'pic' => '/mizhiplayerapi/img/zantingguanggao.jpg',
+      'link' => 'https://www.98dou.cn/',
+    ),
+  ),
+  'danmuon' => 'on',
+  'public_dmku' => 'on',
+  'gg_dmku' => '//dmku.byteamone.cn/dmku/',
+  'av_dmku' => '',
+  'sendtime' => '1',
+  'dmrule' => '../dmku/dm_rule.html',
+  'pbgjz' => '666,123,草,操,妈,逼,滚,网址,网站,支付宝,企,关注,wx,微信,qq,QQ,操',
+);
+?>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta name="referrer" content="<?php echo $metareferer;?>" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+    <link rel="stylesheet" href="/mizhiplayerapi/css/DPlayer.min.css"> 
+    <?php if($yzm['isDebuggerOk']=="on"){ ?>
+    <script src="/mizhiplayerapi/js/fuck-debugger.js"></script>
+	<?php } ?>  
+    <?php
+    if (!strpos($type, '.flv')){
+    if ($yzm["p2p"] == "on") {
+        echo ('<script type="text/javascript" src="/mizhiplayerapi/js/hls.min.js"></script>');
+    }else {
+        echo ('<script type="text/javascript" src="/mizhiplayerapi/js/hls.p2p.js"></script>');
+    }
+    }else {
+        echo ('<script type="text/javascript" src="/mizhiplayerapi/js/flv.min.js"></script>');
+    }
+    ?>
+   <?php 
+   $logo_width_height = explode(",", $yzm["logo_width_height"]);
+   ?>    
+    <script type="text/javascript" src="/mizhiplayerapi/js/DPlayer.min.js"></script>
+    <script src="/mizhiplayerapi/js/jquery.min.js"></script>
+    <style type="text/css">html,body{height:100%;margin:0;padding:0;overflow:hidden;text-align:center;background:#181818} *{margin:0;border:0;padding:0;text-decoration:none} #video{height:100%} .dplayer-logo{max-width:<?php echo $logo_width_height[0];?>px;max-height:<?php echo $logo_width_height[1];?>px;left:auto;right:5%;top:5%}</style>
+    <script type="text/javascript">$("#my-loading", parent.document).remove();</script>
+  </head>
+<body>
+<div id="video"></div>
+<script type="text/javascript">
+var urls = "<?php echo $url;?>";
+var next = "<?php echo $next;?>";
+var url = "<?php echo $type;?>";
+var dp = new DPlayer({
+    container: document.getElementById('video'),
+    theme: '#4C8FE8', 
+    volume: 0.8,
+    <?php
+    echo 'logo:"'.$yzm["logo"].'",';
+	echo 'autoplay: true,';?>
+    video: {
+	    url: url,<?php echo 'pic: "'.$yzm["load_pic"].'",';?>type: 'auto',
+		defaultQuality: 0
+	}
+    ,contextmenu: [{<?php echo 'text: "'.$yzm["right_wenzi"].'",link: "'.$yzm["right_link"].'"';?>}]});
+dp.on("fullscreen",function() {
+    dp.notice("全屏已开启");
+});
+dp.on("fullscreen_cancel",function() {
+    dp.notice("全屏已关闭");
+});
+</script>
+
+<script type="text/javascript">
+        var cookie = {
+          'set': function(name, value, days) {
+            var exp = new Date();
+            exp.setTime(exp.getTime() + days * 24 * 60 * 60 * 1000);
+            var arr = document.cookie.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'));
+            document.cookie = name + '=' + escape(value) + ';path=/;expires=' + exp.toUTCString();
+          },
+          'get': function(name) {
+            var arr = document.cookie.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'));
+            if (arr != null) return unescape(arr[2]);
+          },
+          'put': function(urls) {
+            var cookie = urls.replace(/[^a-z]+/ig, '');
+            var cookie = cookie.substring(cookie.length - 32);
+            return cookie;
+          }
+        }
+        dp.on('loadeddata',function() {
+          cookie.get(urls) ? dp.seek(cookie.get(urls)) : dp.notice("视频已就绪");
+          dp.on('timeupdate',function() {
+            if (cookie) cookie.set(urls, dp.video.currentTime, 30);
+          });
+        });
+        dp.on('ended',function() {
+          dp.notice("视频播放已结束");
+          if (next != '') {
+            top.location.href = next;
+          }        });
+</script>
+</body>
+</html>
