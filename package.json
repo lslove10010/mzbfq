@@ -1,0 +1,31 @@
+{
+  "name": "mzbfq",
+  "version": "1.0.0",
+  "description": "Run PHP project with PM2 and specify Node.js version",
+  "main": "index.php",
+  "scripts": {
+    "start": "pm2 start php --watch --name 'php-app' -- index.php",
+    "stop": "pm2 stop php-app",
+    "restart": "pm2 restart php-app",
+    "logs": "pm2 logs php-app"
+  },
+  "engines": {
+    "node": "16.x",
+    "pm2": ">=5.0.0"
+  },
+  "dependencies": {
+    "pm2": "^5.0.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lslove10010/mzbfq.git"
+  },
+  "keywords": [
+    "pm2",
+    "php",
+    "node"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
